@@ -1,21 +1,16 @@
 import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
-import { AlbumExampleComponent } from './components/album-example/album-example.component';
-import { CardComponent } from './components/card/card.component';
-import { FooterComponent } from './components/footer/footer.component';
-import { HeaderComponent } from './components/header/header.component';
-import { TemaComponent } from './components/tema/tema.component';
+import { AlbumExampleComponent } from '../../components/album-example/album-example.component';
+import { CardComponent } from '../../components/card/card.component';
+import { TemaComponent } from '../../components/tema/tema.component';
 import { NgFor } from '@angular/common';
-import { RouterModule } from '@angular/router';
 
 @Component({
-  selector: 'app-root',
-  imports: [RouterOutlet, AlbumExampleComponent, CardComponent, FooterComponent, HeaderComponent, TemaComponent, NgFor],
-  templateUrl: './app.component.html',
-  styleUrl: './app.component.css'
+  selector: 'app-pagina1',
+  imports: [AlbumExampleComponent, CardComponent, TemaComponent, NgFor],
+  templateUrl: './pagina1.component.html',
+  styleUrl: './pagina1.component.css'
 })
-export class AppComponent {
-  title = 'app';
+export class Pagina1Component {
   cards = Array(9).fill(0); 
 
 
