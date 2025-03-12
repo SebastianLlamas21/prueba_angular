@@ -12,6 +12,7 @@ free: number = 0
 pro: number = 15
 enterprise: number = 29
 hoy: number = Date.now()
+texto: string = 'Fecha'
 
 
   ngAfterViewInit(): void {
