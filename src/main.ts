@@ -8,7 +8,7 @@ import { routes } from './app/app.routes';
 
 bootstrapApplication(AppComponent, {
   providers: [
-    provideHttpClient(), // ✅ Debe estar aquí
+    provideHttpClient(),
     provideRouter(routes),
   ]
 }).catch(err => console.error(err));

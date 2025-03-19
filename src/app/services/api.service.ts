@@ -1,14 +1,15 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { environment } from '../../environments/environment';
 
 
 @Injectable({
   providedIn: 'root'
 })
 export class ApiService {
-  private apiUrl = 'https://api.themoviedb.org/3';
-  private accessToken = 'eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJiN2NkMjg4YTg1ZGRlYzZmMmYxYzQ3YTNjNzc3Yzc2ZiIsIm5iZiI6MTU4ODI3MTY2Ni44MDgsInN1YiI6IjVlYWIxYTMyMDcyOTFjMDAxZWVkNjQ2OSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.K5Q2Zp3Am9ZynB4U3UjlIsBCki5HkxG_zYXhFOau8bc'; // Reemplázalo con tu clave de API
+  private apiUrl = environment.api;
+  private accessToken = environment.token;
 
   constructor(private http: HttpClient) { }
 
@@ -20,14 +21,12 @@ export class ApiService {
     });
   }
 
-  // ✅ Obtener lista de películas populares
-  getPopularMovies(): Observable<any> {
-    return this.http.get(`${this.apiUrl}/movie/popular`, {
+  getPopularMovies(paginas:number = 1): Observable<any> {
+    return this.http.get(`${this.apiUrl}/movie/popular?language=es-MX&page=` +paginas,{
       headers: this.getHeaders(),
     });
   }
 
-  // ✅ Obtener detalles de una película
   getMovieDetails(movieId: number): Observable<any> {
     return this.http.get(`${this.apiUrl}/movie/${movieId}`, {
       headers: this.getHeaders(),

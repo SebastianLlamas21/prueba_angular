@@ -1,18 +1,31 @@
 <div class="container">
   <h2 class="title text-center mb-4">Películas Populares</h2>
-  <div class="row row-cols-1 row-cols-md-3 g-4">
-    <div class="col" *ngFor="let movie of movies">
-      <div class="card h-100">
-        <img [src]="'https://image.tmdb.org/t/p/w500' + movie.poster_path" class="card-img-top" alt="{{ movie.title }}">
-        <div class="card-body">
-          <h5 class="card-title">{{ movie.title }}</h5>
-          <p class="card-text">{{ movie.overview | slice:0:100 }}...</p>
-        </div>
-        <div class="card-footer text-center">
-          <!-- Agregar RouterLink para redirigir a la página de detalles -->
-          <a [routerLink]="['/movie', movie.id]" class="btn btn-primary">Ver Detalles</a>
+  <div class="container" infiniteScroll [infiniteScrollDistance]="2" (scrolled)="onScroll()">
+    <div class="row row-cols-1 row-cols-md-3 g-4">
+      <div class="col" *ngFor="let movie of movies">
+        <div class="card h-100">
+          <img [src]="'https://image.tmdb.org/t/p/w500' + movie.poster_path" class="img-fluid rounded"
+            alt="{{ movie.title }}" (click)="abrirDetalles(movie.id)">
+          <!--appImgBroken[errorImage]="'assets/images/placeholder.png'"-->
+
+          <img *ngIf="movie.poster_path == null" [src]="'assets/images/placeholder.png'" class="img-fluid rounded"
+            alt="{{ movie.title }}" (click)="abrirDetalles(movie.id)">
+          <div class="card-body">
+            <h5 class="card-title">{{ movie.title }}</h5>
+            <p class="card-text">{{ movie.overview | slice:0:100 }}...</p>
+          </div>
+          <div class="card-footer text-center">
+            <!-- Agregar RouterLink para redirigir a la página de detalles -->
+            <button class="btn btn-primary" (click)="abrirDetalles(movie.id)">
+              Ver Detalles
+            </button>
+          </div>
         </div>
       </div>
     </div>
   </div>
 </div>
+
+
+
+<!--<button class="btn btn-primary" (click)="cargarMas()">Cargar Mas</button>-->
